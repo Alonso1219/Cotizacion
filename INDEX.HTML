@@ -3,247 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cotiza Tu Auto Hoy</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Base Styles */
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f6f9;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Header */
-    .header {
-      background-color: #4e5d6c;
-      color: #fff;
-      text-align: center;
-      padding: 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 2s ease-out;
-    }
-
-    .header h1 {
-      font-size: 3em;
-      margin: 0;
-      text-transform: uppercase;
-      animation: slideIn 1s ease-out;
-    }
-
-    /* Propaganda CTA Banner */
-    .cta-banner {
-      background-color: #007bff;
-      color: #fff;
-      padding: 50px;
-      text-align: center;
-      margin: 20px auto;
-      border-radius: 8px;
-      max-width: 900px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 2s ease-out;
-    }
-
-    .cta-banner h2 {
-      font-size: 2.5em;
-      margin: 0 0 20px;
-      animation: slideIn 1s ease-out;
-    }
-
-    .cta-banner p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-
-    .cta-banner a {
-      background-color: #ff6347;
-      color: #fff;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-      animation: bounceIn 1s ease-out;
-    }
-
-    .cta-banner a:hover {
-      background-color: #ff4500;
-    }
-
-    /* Autos Móviles (Barra de Autos) */
-    .autos-moviles {
-      width: 100%;
-      overflow: hidden;
-      background-color: #f1f1f1;
-      padding: 10px 0;
-      margin-top: 30px;
-      animation: fadeIn 2s ease-out;
-    }
-
-    .autos-container {
-      display: flex;
-      white-space: nowrap;
-      animation: moverAutos 15s linear infinite;
-    }
-
-    .auto {
-      margin-right: 50px;
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #333;
-      animation: slide 5s ease-in-out infinite;
-    }
-
-    /* Animaciones */
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    @keyframes slideIn {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(0); }
-    }
-
-    @keyframes moverAutos {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    @keyframes slide {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* Animación de Neumáticos/GIF Moviéndose */
-    .gif-movimiento {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-      padding: 20px;
-      animation: fadeIn 2s ease-out;
-    }
-
-    .gif-container {
-      width: 100%;
-      max-width: 400px;
-      height: 100px;
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .gif-container img {
-      width: 50px;
-      height: 50px;
-      animation: rotate 1s linear infinite;
-    }
-
-    /* Animación de giro para neumático o GIF */
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Form Container */
-    .form-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      text-align: center;
-      animation: fadeIn 3s ease-out;
-    }
-
-    .form-container form {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 600px;
-      animation: zoomIn 1s ease-out;
-    }
-
-    /* Inputs and Button */
-    .form-container form input, .form-container form select, .form-container form button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 1em;
-      background-color: #f9f9f9;
-      transition: all 0.3s ease;
-    }
-
-    .form-container form input:focus, .form-container form select:focus {
-      border-color: #007bff;
-      background-color: #f1f9ff;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-    }
-
-    .form-container form button {
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-      font-size: 1.1em;
-      transition: background-color 0.3s ease;
-    }
-
-    .form-container form button:hover {
-      background-color: #0056b3;
-    }
-
-    @keyframes zoomIn {
-      0% { transform: scale(0.9); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes bounceIn {
-      0% { transform: translateY(100px); opacity: 0; }
-      50% { transform: translateY(-20px); opacity: 1; }
-      100% { transform: translateY(0); }
-    }
-  </style>
+  <title>Cotización de Autos</title>
+  <link rel="stylesheet" href="/CSS/Cotizacion.CSS">
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <h1>¡Cotiza Tu Auto Hoy Mismo!</h1>
-  </div>
+  <h1>Cotización de Autos</h1>
 
-  <!-- Barra de Autos Móviles -->
-  <div class="autos-moviles">
-    <div class="autos-container">
-      <span class="auto">Toyota Yaris</span>
-      <span class="auto">Honda Civic</span>
-      <span class="auto">Mazda 3</span>
-      <span class="auto">Volkswagen Golf</span>
-      <span class="auto">Ford Focus</span>
-      <span class="auto">Chevrolet Cruze</span>
-      <span class="auto">Nissan Altima</span>
-    </div>
-  </div>
+  <form id="formCotizacion">
+    <label for="numero">Número de Cotización:</label>
+    <input type="text" id="numero" name="numero" required><br><br>
 
-  <!-- Animación de Neumáticos/GIF Moviéndose -->
-  <div class="gif-movimiento">
-    <div class="gif-container">
-      <img src="/IMG/llanta.jpg" alt="Neumático Girando">
-    </div>
-  </div>
+    <label for="auto">Selecciona el Auto:</label>
+    <select id="auto" name="auto" required>
+      <option value="" data-precio="0">Seleccione un auto</option>
+      <option value="Toyota Yaris 2023" data-precio="320000">Toyota Yaris 2023</option>
+      <option value="Honda Civic 2024" data-precio="380000">Honda Civic 2024</option>
+      <option value="Chevrolet Aveo 2023" data-precio="280000">Chevrolet Aveo 2023</option>
+      <option value="Personalizado" data-precio="0">Otro (especificar precio)</option>
+    </select><br><br>
 
-  <!-- CTA Banner -->
-  <div class="cta-banner">
-    <h2>¡Obtén tu cotización en minutos!</h2>
-    <p>Encuentra el auto de tus sueños y obtén una cotización precisa con solo unos clics.</p>
-    <a href="/HTML/Cotizacion.HTML" class="cta-button">Cotiza Ahora</a>
-  </div>
+    <label for="precio">Precio del Auto ($):</label>
+    <input type="number" id="precio" name="precio" required min="10000"><br><br>
 
-  <script src="cotizacion.js"></script>
+    <label for="porcentaje">Porcentaje de Pago Inicial (%):</label>
+    <input type="number" id="porcentaje" name="porcentaje" required min="10" max="100" value="30"><br><br>
 
+    <label for="plazo">Plazo de Pagos (meses):</label>
+    <select id="plazo" name="plazo" required>
+      <option value="">Seleccione una opción</option>
+      <option value="12">12</option>
+      <option value="24">24</option>
+      <option value="36">36</option>
+      <option value="48">48</option>
+      <option value="60">60</option>
+    </select><br><br>
+
+    <button type="submit">Calcular Cotización</button>
+  </form>
+
+  <div id="resultado" style="margin-top: 20px;"></div>
+
+  <script src="/JS/Cotizacion.JS"></script>
 </body>
 </html>

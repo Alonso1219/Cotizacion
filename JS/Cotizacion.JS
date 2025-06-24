@@ -1,56 +1,60 @@
-// Función para generar un porcentaje aleatorio entre 20 y 40
-function generarPorcentajeAleatorio() {
-  return Math.floor(Math.random() * (40 - 20 + 1)) + 20; // Número entre 20 y 40
-}
-
-// Generar un número de cotización aleatorio entre 000 y 1000
-function generarNumeroCotizacion() {
-  const numero = Math.floor(Math.random() * 1001); // Número entre 0 y 1000
-  return numero.toString().padStart(3, '0'); // Con 3 dígitos, ej: 005
-}
-
-// Función para calcular la cotización
-function calcularCotizacion(event) {
-  event.preventDefault();
-
-  const autoSeleccionado = document.getElementById('auto').value;
-  const precioAuto = parseFloat(document.getElementById('precio').value);
-  const porcentajePagoInicial = generarPorcentajeAleatorio();
-  const plazo = parseInt(document.getElementById('plazo').value);
-
-  if (!autoSeleccionado || !precioAuto || !plazo) {
-    alert('Por favor, completa todos los campos.');
-    return;
-  }
-
-  const pagoInicial = precioAuto * (porcentajePagoInicial / 100);
-  const totalFinanciar = precioAuto - pagoInicial;
-  const mensualidad = totalFinanciar / plazo;
-
-  const resultadoDiv = document.getElementById('resultado');
-  resultadoDiv.innerHTML = `
-    <h2>Detalles de la Cotización</h2>
-    <p><strong>Número de Cotización:</strong> ${generarNumeroCotizacion()}</p>
-    <p><strong>Auto Seleccionado:</strong> ${autoSeleccionado}</p>
-    <p><strong>Precio del Auto:</strong> $${precioAuto.toFixed(2)}</p>
-    <p><strong>Pago Inicial (${porcentajePagoInicial}%):</strong> $${pagoInicial.toFixed(2)}</p>
-    <p><strong>Total a Financiar:</strong> $${totalFinanciar.toFixed(2)}</p>
-    <p><strong>Mensualidad a ${plazo} meses:</strong> $${mensualidad.toFixed(2)}</p>
-  `;
-}
-
-// Al cargar la página
-window.onload = function() {
-  document.getElementById('numero').value = generarNumeroCotizacion();
+document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('formCotizacion');
-  form.addEventListener('submit', calcularCotizacion);
-};
-
-// Actualizar precio al seleccionar auto, pero permitir edición manual después
-document.getElementById('auto').addEventListener('change', function () {
-  const selectedOption = this.options[this.selectedIndex];
-  const precio = selectedOption.getAttribute('data-precio');
-  if (precio > 0) {
-    document.getElementById('precio').value = precio;
-  }
+  const autoSelect = document.getElementById('auto');
+  const precioInput = document.getElementById('precio');
+  
+  // Actualizar precio cuando se selecciona un auto
+  autoSelect.addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const precioBase = selectedOption.getAttribute('data-precio');
+    
+    // Solo actualizar el precio si no es "Personalizado"
+    if (selectedOption.value !== "Personalizado") {
+      precioInput.value = precioBase || '0';
+    } else {
+      precioInput.value = '';
+      precioInput.focus();
+    }
+  });
+  
+  // Calcular cotización
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const precio = parseFloat(precioInput.value);
+    const porcentaje = parseFloat(document.getElementById('porcentaje').value);
+    const plazo = parseInt(document.getElementById('plazo').value);
+    
+    // Validaciones (aquí estaba el error - faltaba cerrar paréntesis en isNaN(precio))
+    if (isNaN(precio)) {
+      alert('Por favor ingrese un precio válido');
+      return;
+    }
+    
+    if (isNaN(porcentaje)) {
+      alert('Por favor ingrese un porcentaje válido');
+      return;
+    }
+    
+    if (isNaN(plazo)) {
+      alert('Por favor seleccione un plazo válido');
+      return;
+    }
+    
+    // Cálculos financieros
+    const pagoInicial = (precio * porcentaje) / 100;
+    const montoFinanciar = precio - pagoInicial;
+    const pagoMensual = montoFinanciar / plazo;
+    
+    // Mostrar resultados
+    const resultado = document.getElementById('resultado');
+    resultado.innerHTML = `
+      <h2>Resultado de la Cotización</h2>
+      <p><strong>Auto seleccionado:</strong> ${autoSelect.value === "Personalizado" ? "Auto personalizado" : autoSelect.options[autoSelect.selectedIndex].text}</p>
+      <p><strong>Precio del auto:</strong> $${precio.toLocaleString('es-MX')}</p>
+      <p><strong>Pago inicial (${porcentaje}%):</strong> $${pagoInicial.toLocaleString('es-MX')}</p>
+      <p><strong>Monto a financiar:</strong> $${montoFinanciar.toLocaleString('es-MX')}</p>
+      <p><strong>Pago mensual por ${plazo} meses:</strong> $${pagoMensual.toLocaleString('es-MX')}</p>
+    `;
+  });
 });
