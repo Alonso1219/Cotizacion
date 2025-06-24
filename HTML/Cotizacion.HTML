@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Cotización de Autos</title>
   <link rel="stylesheet" href="/CSS/Cotizacion.CSS">
-
 </head>
 <body>
 
@@ -12,7 +11,7 @@
 
   <form id="formCotizacion">
     <label for="numero">Número de Cotización:</label>
-    <input type="text" id="numero" name="numero" readonly><br><br>
+    <input type="text" id="numero" name="numero" required><br><br>
 
     <label for="auto">Selecciona el Auto:</label>
     <select id="auto" name="auto" required>
@@ -23,7 +22,7 @@
     </select><br><br>
 
     <label for="precio">Precio del Auto ($):</label>
-    <input type="number" id="precio" name="precio" required readonly><br><br>
+    <input type="number" id="precio" name="precio" required><br><br>
 
     <label for="porcentaje">Porcentaje de Pago Inicial (%):</label>
     <input type="number" id="porcentaje" name="porcentaje" required value="30"><br><br>
@@ -43,6 +42,7 @@
 
   <div id="resultado" style="margin-top: 20px;"></div>
 
-  <script src="/JS/Cotizacion.JS"></script> <!-- Aquí agregas el script -->
+  <script src="/JS/Cotizacion.JS"></script>
 </body>
 </html>
+
